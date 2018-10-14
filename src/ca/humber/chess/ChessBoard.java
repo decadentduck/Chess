@@ -84,8 +84,8 @@ public class ChessBoard
     public boolean turn(String player, char c1, int y1, char c2, int y2) 
     {
         //convert chars
-        int x1 = c1;
-        int x2 = c2;
+        int x1 = c1 - 65;
+        int x2 = c2 - 65;
         
         //check if there is a piece at that spot
         if(board[x1][y1] != null)
@@ -107,6 +107,20 @@ public class ChessBoard
     public boolean gameOver()
     {
         //check if game is over
+        int kings = 0;
+        //set everything to null
+        for(int r = 0; r < board.length; r++)
+        {
+            for( int c = 0; c < board.length; c++)
+            {
+                if(board[r][c] != null) 
+                {
+                    if(board[r][c].symbol == 'k' || board[r][c].symbol == 'K') kings++;
+                }
+            }
+        }
+        
+        if (kings < 2) return true;
         return false;
     }
 }
