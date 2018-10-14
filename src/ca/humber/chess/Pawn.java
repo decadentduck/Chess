@@ -38,8 +38,7 @@ public class Pawn extends ChessPiece
             {
                 if (difference <= 0) return false;
             }
-            //if its black moves down
-            else
+            else //if its black moves down
             {
                 if (difference >= 0) return false;
             }

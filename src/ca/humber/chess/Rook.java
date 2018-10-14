@@ -13,27 +13,23 @@ public class Rook extends ChessPiece
     @Override
     public Boolean CheckMove(int r1, int c1, int r2, int c2, ChessPiece[][] board)
     {
-        String direction;
-
         //moves up down left right if no piece is in the way
+        
         if (r1 == r2) //moving sideways
         {
             //if direction is right
             if(c2 - c1 > 0) 
             {
-                for(int c = c1; c < c2; c++)
+                for(int c = c1 + 1; c < c2; c++)
                 {
-                    if (board[r1][c] != null){
-                        return false;
-                    }
+                    if (board[r1][c] != null) return false;
                 }
-            } //direction is left
-            else{
-                for(int c = c1; c > c2; c--)
+            } 
+            else //direction is left
+            {
+                for(int c = c1 - 1; c > c2; c--)
                 {
-                    if (board[r1][c] != null){
-                        return false;
-                    }
+                    if (board[r1][c] != null) return false;
                 }
             } 
         }
@@ -42,19 +38,16 @@ public class Rook extends ChessPiece
             //if direction is up
             if(r2 - r1 > 0) 
             {
-                for(int r = r1; r < r2; r++)
+                for(int r = r1 + 1; r < r2; r++)
                 {
-                    if (board[r][c1] != null){
-                        return false;
-                    }
+                    if (board[r][c1] != null) return false;
                 }
-            } //direction is down
-            else{
-                for(int r = r1; r > r2; r--)
+            } 
+            else //direction is down
+            {
+                for(int r = r1 - 1; r > r2; r--)
                 {
-                    if (board[r][c1] != null){
-                        return false;
-                    }
+                    if (board[r][c1] != null) return false;
                 }
             } 
             

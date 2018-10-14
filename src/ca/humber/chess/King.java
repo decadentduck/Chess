@@ -16,12 +16,9 @@ public class King extends ChessPiece
     {
         //one space in any diection
         int difr = r2 - r1;
-        if (difr < 0) difr *= -1;
-        
         int difc = r2 - r1;
-        if (difc < 0) difr *= -1;
         
-        if(difr > 1 || difc > 1) return false;
+        if(Math.abs(difr) > 1 || Math.abs(difc) > 1) return false;
         
         return true;
     }
