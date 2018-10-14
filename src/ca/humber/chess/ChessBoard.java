@@ -58,12 +58,12 @@ public class ChessBoard
         board[7][5] = new Bishop("black");
         
         //kings
-        board[0][4] = new King("white");
-        board[7][4] = new King("black");
+        board[0][3] = new King("white");
+        board[7][3] = new King("black");
         
         //queens
-        board[0][3] = new Queen("white");
-        board[7][3] = new Queen("black");
+        board[0][4] = new Queen("white");
+        board[7][4] = new Queen("black");
         
     }
     
