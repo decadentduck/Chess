@@ -3,7 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Rook.java</file>
             <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/King.java</file>
             <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Queen.java</file>
@@ -12,17 +11,6 @@
             <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Knight.java</file>
             <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Pawn.java</file>
             <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Bishop.java</file>
-=======
-            <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/Rook.java</file>
-            <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/Bishop.java</file>
-            <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/King.java</file>
-            <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/ChessBoard.java</file>
-            <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/Pawn.java</file>
-            <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/ChessPiece.java</file>
-            <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/Queen.java</file>
-            <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/Knight.java</file>
-            <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/Chess.java</file>
->>>>>>> d6b54332b1e8429677d9c63f794094fa1d7e7f58
         </group>
     </open-files>
 </project-private>
