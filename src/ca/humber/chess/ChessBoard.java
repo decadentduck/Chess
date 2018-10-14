@@ -46,7 +46,8 @@ public class ChessBoard
         board[7][7] = new Rook("black");
         
         //knights
-        board[0][2] = new Knight("white");
+        board[0][1] = new Knight("white");
+        board[0][6] = new Knight("white");
         
         //bishops
         
