@@ -127,7 +127,7 @@ public class ChessBoard
     {
         //check if game is over
         int kings = 0;
-        //set everything to null
+        //count kings
         for(int r = 0; r < board.length; r++)
         {
             for( int c = 0; c < board.length; c++)
