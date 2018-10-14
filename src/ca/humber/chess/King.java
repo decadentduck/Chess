@@ -12,7 +12,7 @@ public class King extends ChessPiece
     }
     
     @Override
-    public Boolean CheckMove(int r1, int c1, int r2, int c2)
+    public Boolean CheckMove(int r1, int c1, int r2, int c2, ChessPiece[][] board)
     {
         //one space in any diection
         int difr = r2 - r1;

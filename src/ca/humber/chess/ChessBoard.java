@@ -105,7 +105,7 @@ public class ChessBoard
                 if ((board[r2][col2] != null && !board[r2][col2].colour.equals(player)) || board[r2][col2] == null) 
                 {
                     System.out.println("nothing in way");
-                    if (board[r1][col1].CheckMove(r1, col1, r2, col2)) 
+                    if (board[r1][col1].CheckMove(r1, col1, r2, col2, board)) 
                     {
                         System.out.println("legal move");
                         board[r2][col2] = board[r1][col1];

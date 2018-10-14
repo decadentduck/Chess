@@ -13,7 +13,7 @@ public class Pawn extends ChessPiece
     }
     
     @Override
-    public Boolean CheckMove(int r1, int c1, int r2, int c2)
+    public Boolean CheckMove(int r1, int c1, int r2, int c2, ChessPiece[][] board)
     {
         //need to check board to see if any piece is in the way
         //need to implement diagocal if enemy occupies the space

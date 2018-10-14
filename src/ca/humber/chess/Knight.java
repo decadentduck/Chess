@@ -11,7 +11,7 @@ public class Knight extends ChessPiece
     }
     
     @Override
-    public Boolean CheckMove(int r1, int c1, int r2, int c2)
+    public Boolean CheckMove(int r1, int c1, int r2, int c2, ChessPiece[][] board)
     {
         if (r2 != r1 + 2 || r2 != r1 - 2 || r2 != r1 + 1 || r2 != r1 - 1)
         {
