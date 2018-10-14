@@ -6,7 +6,7 @@ public abstract class ChessPiece
     protected char symbol;
     int x1, x2, y1, y2;
     
-    public Boolean CheckMove(char x1_, int y1_, char x2_, int y2_)
+    public Boolean CheckMove(int x1_, int y1_, int x2_, int y2_)
     {
         return true;
     }

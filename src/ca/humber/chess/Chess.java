@@ -9,6 +9,7 @@ public class Chess
         boolean running = true;
         ChessBoard game = new ChessBoard();
         game.Setup();
+        String player = "white";
         
         //game loop
         while(running)

@@ -80,4 +80,33 @@ public class ChessBoard
             System.out.print("\n");
         }
     }
+    
+    public boolean turn(String player, char c1, int y1, char c2, int y2) 
+    {
+        //convert chars
+        int x1 = c1;
+        int x2 = c2;
+        
+        //check if there is a piece at that spot
+        if(board[x1][y1] != null)
+        {
+            if(board[x1][y1].colour.equals(player))
+            {
+                //check if that piece can move to specified spot
+                if(board[x1][y1].CheckMove(c1, y1, c2, y2) && !board[x2][y2].colour.equals(player)) 
+                {
+                    board[x2][y2] = board[x1][y1];
+                    board[x1][y1] = null;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean gameOver()
+    {
+        //check if game is over
+        return false;
+    }
 }

@@ -11,10 +11,8 @@ public class Rook extends ChessPiece
     }
     
     @Override
-    public Boolean CheckMove(char c1_, int y1_, char c2_, int y2_)
+    public Boolean CheckMove(int x1_, int y1_, int x2_, int y2_)
     {
-        int x1 = c1_;
-        int x2 = c2_;
         
         if (x1 != x2 && y1 != y2){ return false;}
             
