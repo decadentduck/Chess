@@ -18,9 +18,12 @@ public class Rook extends ChessPiece
         else symbol = 'r';
     }
     
+    
     @Override
-    public Boolean CheckMove(char x1, int y1, char x2, int y2)
+    public Boolean CheckMove(char x1_, int y1_, char x2_, int y2_)
     {
+        if (x1 != x2 && y1 != y2){ return false;}
+            
         return true;
     }
 }
