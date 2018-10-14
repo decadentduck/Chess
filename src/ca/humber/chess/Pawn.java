@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*Created by Kaitlyn Ewing & Jeff Bonhoff*/
 package ca.humber.chess;
 
-/**
- *
- * @author kaitl
- */
 public class Pawn extends ChessPiece
 {
     boolean firstMove;

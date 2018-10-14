@@ -1,3 +1,4 @@
+/*Created by Kaitlyn Ewing & Jeff Bonhoff*/
 package ca.humber.chess;
 
 public class Bishop extends ChessPiece
