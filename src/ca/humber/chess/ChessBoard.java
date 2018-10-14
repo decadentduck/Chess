@@ -48,12 +48,23 @@ public class ChessBoard
         //knights
         board[0][1] = new Knight("white");
         board[0][6] = new Knight("white");
+        board[7][1] = new Knight("black");
+        board[7][6] = new Knight("black");
         
         //bishops
+        board[0][2] = new Bishop("white");
+        board[0][5] = new Bishop("white");
+        board[7][2] = new Bishop("black");
+        board[7][5] = new Bishop("black");
         
         //kings
+        board[0][3] = new King("white");
+        board[7][3] = new King("black");
         
         //queens
+        board[0][4] = new Queen("white");
+        board[7][4] = new Queen("black");
+        
     }
     
     public void Draw()
