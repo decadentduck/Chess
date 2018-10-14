@@ -15,28 +15,33 @@ public class Pawn extends ChessPiece
     @Override
     public Boolean CheckMove(int r1, int c1, int r2, int c2)
     {
-        if (colour.equals("white")) 
+        //stay in same column
+        if( c1 == c2)
         {
-            if (firstMove)
+           int difference = r2 - r1;
+           int d = difference;
+           if(d < 0) d *= -1;
+            //if first turn move 1 or 2
+            if(firstMove)
             {
-                //apparently a pawn can move two spaces forwards, but only the first time it moves
-                if (c1 != c2 || r2 - r1 > 2) return false;
-                else firstMove = false;
+                if (d > 2) return false;
             }
-            //else can move one space forward
-            else if (c1 != c2 || r2 - r1 != 1) return false;
-        } 
-        else 
-        {
-            if (firstMove)
+            else
             {
-                //apparently a pawn can move two spaces forwards, but only the first time it moves
-                if (c1 != c2 || r1 - r2 > 2) return false;
-                else firstMove = false;
+                if (d > 1) return false;
             }
-            //else can move one space forward
-            else if (c1 != c2 || r1 - r2 != 1) return false;
+            //if its white can move up 
+            if(colour.equals("white"))
+            {
+                if (difference <= 0) return false;
+            }
+            //if its black moves down
+            else
+            {
+                if (difference >= 0) return false;
+            }
         }
+        else return false;
         
         return true;
     }

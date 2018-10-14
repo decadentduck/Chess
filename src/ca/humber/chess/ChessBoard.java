@@ -102,7 +102,7 @@ public class ChessBoard
             {
                 System.out.println("player piece there");
                 //check if that piece can move to specified spot
-                if (board[r2][col2] != null && !board[r2][col2].colour.equals(player)) 
+                if ((board[r2][col2] != null && !board[r2][col2].colour.equals(player)) || board[r2][col2] == null) 
                 {
                     System.out.println("Legal move");
                     if (board[r1][col1].CheckMove(r1, col1, r2, col2)) 
