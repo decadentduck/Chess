@@ -11,11 +11,13 @@ package ca.humber.chess;
  */
 public class Pawn extends ChessPiece
 {
+    boolean firstMove;
     public Pawn(String colour_) 
     {
         colour = colour_;
         if(colour.equals("white")) symbol = 'P';
         else symbol = 'p';
+        firstMove = true;
     }
     
     @Override
@@ -24,10 +26,26 @@ public class Pawn extends ChessPiece
         int x1 = c1_;
         int x2 = c2_;
         
-        //apparently a pawn can move two spaces forwards, but only the first time it moves
-        
-        if (colour.equals("white")){if(x1 != x2 || y1 != y2+1){return false;}}
-        else{if(x1 != x2 || y1 != y2-1){return false;}}
+        if (colour.equals("white")) 
+        {
+            if (firstMove)
+            {
+                //apparently a pawn can move two spaces forwards, but only the first time it moves
+                if (x1 != x2 || y2 - y1 > 2) return false;
+                else firstMove = false;
+            }
+            if (x1 != x2 || y1 != y2 + 1) return false;
+        } 
+        else 
+        {
+            if (firstMove)
+            {
+                //apparently a pawn can move two spaces forwards, but only the first time it moves
+                if (x1 != x2 || y1 - y2 > 2) return false;
+                else firstMove = false;
+            }
+            if (x1 != x2 || y1 != y2 - 1) return false;
+        }
         
         return true;
     }
