@@ -19,8 +19,11 @@ public class Pawn extends ChessPiece
     }
     
     @Override
-    public Boolean CheckMove(char x1_, int y1_, char x2_, int y2_)
+    public Boolean CheckMove(char c1_, int y1_, char c2_, int y2_)
     {
+        int x1 = c1_;
+        int x2 = c2_;
+        
         //apparently a pawn can move two spaces forwards, but only the first time it moves
         
         if (colour.equals("white")){if(x1 != x2 || y1 != y2+1){return false;}}
