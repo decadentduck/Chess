@@ -21,41 +21,44 @@ public class ChessBoard
             }
         }
         
+        String a = "black";
+        String b = "white";
+          
         //pawns
         for(int i = 0; i < 8; i++)
         {
-            board[1][i] = new Pawn("white");
+            board[1][i] = new Pawn(b);
         }
         for(int i = 0; i < 8; i++)
         {
-            board[6][i] = new Pawn("black");
+            board[6][i] = new Pawn(a);
         }
         
         //rooks
-        board[0][0] = new Rook("white");
-        board[0][7] = new Rook("white");
-        board[7][0] = new Rook("black");
-        board[7][7] = new Rook("black");
+        board[0][0] = new Rook(b);
+        board[0][7] = new Rook(b);
+        board[7][0] = new Rook(a);
+        board[7][7] = new Rook(a);
         
         //knights
-        board[0][1] = new Knight("white");
-        board[0][6] = new Knight("white");
-        board[7][1] = new Knight("black");
-        board[7][6] = new Knight("black");
+        board[0][1] = new Knight(b);
+        board[0][6] = new Knight(b);
+        board[7][1] = new Knight(a);
+        board[7][6] = new Knight(a);
         
         //bishops
-        board[0][2] = new Bishop("white");
-        board[0][5] = new Bishop("white");
-        board[7][2] = new Bishop("black");
-        board[7][5] = new Bishop("black");
+        board[0][2] = new Bishop(b);
+        board[0][5] = new Bishop(b);
+        board[7][2] = new Bishop(a);
+        board[7][5] = new Bishop(a);
         
         //kings
-        board[0][3] = new King("white");
-        board[7][3] = new King("black");
+        board[0][3] = new King(b);
+        board[7][3] = new King(a);
         
         //queens
-        board[0][4] = new Queen("white");
-        board[7][4] = new Queen("black");
+        board[0][4] = new Queen(b);
+        board[7][4] = new Queen(a);
         
     }
     
@@ -81,26 +84,42 @@ public class ChessBoard
         }
     }
     
-    public boolean turn(String player, char c1, int y1, char c2, int y2) 
+    public boolean turn(String player, char c1,int r1 , char c2, int r2) 
     {
         //convert chars
-        int x1 = c1 - 65;
-        int x2 = c2 - 65;
+        int col1 = c1 - 65;
+        int col2 = c2 - 65;
+        System.out.print(r1);
+        System.out.print(col1);
+        System.out.println("");
+        System.out.print(r2);
+        System.out.println(col2);
         
         //check if there is a piece at that spot
-        if(board[x1][y1] != null)
+        if(board[r1][col1] != null)
         {
-            if(board[x1][y1].colour.equals(player))
+            if(board[r1][col1].colour.equals(player))
             {
+                System.out.println("player piece there");
                 //check if that piece can move to specified spot
-                if(board[x1][y1].CheckMove(c1, y1, c2, y2) && !board[x2][y2].colour.equals(player)) 
+                if (board[r2][col2] != null && !board[r2][col2].colour.equals(player)) 
                 {
-                    board[x2][y2] = board[x1][y1];
-                    board[x1][y1] = null;
-                    return true;
+                    System.out.println("Legal move");
+                    if (board[r1][col1].CheckMove(r1, col1, r2, col2)) 
+                    {
+                        System.out.println("did move");
+                        board[r2][col2] = board[r1][col1];
+                        board[r1][col1] = null;
+                        return true;
+                    }
+                    else System.out.println("didnt move");
                 }
+                else System.out.println("Illegal move");
             }
+            else System.out.println("piece there");
         }
+        else System.out.println("null piece");
+        
         return false;
     }
     
@@ -115,7 +134,7 @@ public class ChessBoard
             {
                 if(board[r][c] != null) 
                 {
-                    if(board[r][c].symbol == 'k' || board[r][c].symbol == 'K') kings++;
+                    if(board[r][c].symbol == 'x' || board[r][c].symbol == 'X') kings++;
                 }
             }
         }
