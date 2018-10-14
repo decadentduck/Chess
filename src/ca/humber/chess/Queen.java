@@ -11,8 +11,9 @@ public class Queen extends ChessPiece
     }
     
     @Override
-    public Boolean CheckMove(int x1_, int y1_, int x2_, int y2_)
+    public Boolean CheckMove(int r1, int c1, int r2, int c2)
     {
+        //moves in for/back/side/diagonal directions provided no pieces stand in her way
         return true;
     }
 }

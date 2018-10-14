@@ -104,17 +104,17 @@ public class ChessBoard
                 //check if that piece can move to specified spot
                 if ((board[r2][col2] != null && !board[r2][col2].colour.equals(player)) || board[r2][col2] == null) 
                 {
-                    System.out.println("Legal move");
+                    System.out.println("nothing in way");
                     if (board[r1][col1].CheckMove(r1, col1, r2, col2)) 
                     {
-                        System.out.println("did move");
+                        System.out.println("legal move");
                         board[r2][col2] = board[r1][col1];
                         board[r1][col1] = null;
                         return true;
                     }
-                    else System.out.println("didnt move");
+                    else System.out.println("illegal move");
                 }
-                else System.out.println("Illegal move");
+                else System.out.println("piece in way");
             }
             else System.out.println("piece there");
         }

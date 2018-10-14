@@ -13,6 +13,7 @@ public class Bishop extends ChessPiece
     @Override
     public Boolean CheckMove(int x1_, int y1_, int x2_, int y2_)
     {
+        //diagonals if no piece in the way
         return true;
     }
 }

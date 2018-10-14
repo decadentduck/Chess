@@ -11,13 +11,13 @@ public class Knight extends ChessPiece
     }
     
     @Override
-    public Boolean CheckMove(int x1_, int y1_, int x2_, int y2_)
+    public Boolean CheckMove(int r1, int c1, int r2, int c2)
     {
-        if (x2_ != x1_ + 2 || x2_ != x1_ - 2 || x2_ != x1_ + 1 || x2_ != x1_ - 1)
+        if (r2 != r1 + 2 || r2 != r1 - 2 || r2 != r1 + 1 || r2 != r1 - 1)
         {
-            if(y2_ != y1_ + 2 || y2_ != y1_ - 2 || y2_ != y1_ + 1 || y2_ != y1_ - 1)
+            if(c2 != c1 + 2 || c2 != c1 - 2 || c2 != c1 + 1 || c2 != c1 - 1)
             {
-                if(y2_ == y1_ + 2 && x2_ == x1_ + 2 || y2_ == y1_ + 2 && x2_ == x1_ - 2 || y2_ == y1_ - 2 && x2_ == x1_ + 2 || y2_ == y1_ - 2 && x2_ == x1_ - 2 )
+                if(c2 == c1 + 2 && r2 == r1 + 2 || c2 == c1 + 2 && r2 == r1 - 2 || c2 == c1 - 2 && r2 == r1 + 2 || c2 == c1 - 2 && r2 == r1 - 2 )
                 {
                     return false;
                 }

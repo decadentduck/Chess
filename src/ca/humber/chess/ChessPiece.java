@@ -5,7 +5,7 @@ public abstract class ChessPiece
     protected String colour;
     protected char symbol;
     
-    public Boolean CheckMove(int row1, int col1, int row2, int col2)
+    public Boolean CheckMove(int r1, int c1, int r2, int c2)
     {
         return true;
     }

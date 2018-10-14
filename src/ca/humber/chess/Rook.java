@@ -13,6 +13,7 @@ public class Rook extends ChessPiece
     @Override
     public Boolean CheckMove(int x1, int y1, int x2, int y2)
     {
+        //moves up down left right if no piece is in the way
         
         if (x1 != x2 && y1 != y2){ return false;}
             
