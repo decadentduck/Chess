@@ -8,9 +8,10 @@ public class ChessBoard
     public ChessBoard()
     {
         board = new ChessPiece[8][8];
+        Setup();
     }
     
-    public void Setup()
+    private void Setup()
     {
         //set everything to null
         for(int r = 0; r < board.length; r++)
@@ -27,38 +28,38 @@ public class ChessBoard
         //pawns
         for(int i = 0; i < 8; i++)
         {
-            board[1][i] = new Pawn(b);
+            board[1][i] = new Pawn(b, 1, i);
         }
         for(int i = 0; i < 8; i++)
         {
-            board[6][i] = new Pawn(a);
+            board[6][i] = new Pawn(a, 6, i);
         }
         
         //rooks
-        board[0][0] = new Rook(b);
-        board[0][7] = new Rook(b);
-        board[7][0] = new Rook(a);
-        board[7][7] = new Rook(a);
+        board[0][0] = new Rook(b, 0, 0);
+        board[0][7] = new Rook(b, 0, 7);
+        board[7][0] = new Rook(a, 7, 0);
+        board[7][7] = new Rook(a, 7, 7);
         
         //knights
-        board[0][1] = new Knight(b);
-        board[0][6] = new Knight(b);
-        board[7][1] = new Knight(a);
-        board[7][6] = new Knight(a);
+        board[0][1] = new Knight(b, 0 ,1);
+        board[0][6] = new Knight(b, 0, 6);
+        board[7][1] = new Knight(a, 7, 1);
+        board[7][6] = new Knight(a, 7, 6);
         
         //bishops
-        board[0][2] = new Bishop(b);
-        board[0][5] = new Bishop(b);
-        board[7][2] = new Bishop(a);
-        board[7][5] = new Bishop(a);
+        board[0][2] = new Bishop(b, 0, 2);
+        board[0][5] = new Bishop(b, 0, 5);
+        board[7][2] = new Bishop(a, 7, 2);
+        board[7][5] = new Bishop(a, 7, 5);
         
         //kings
-        board[0][3] = new King(b);
-        board[7][3] = new King(a);
+        board[0][3] = new King(b, 0, 3);
+        board[7][3] = new King(a, 7, 3);
         
         //queens
-        board[0][4] = new Queen(b);
-        board[7][4] = new Queen(a);
+        board[0][4] = new Queen(b, 0, 4);
+        board[7][4] = new Queen(a, 7, 4);
         
     }
     
@@ -82,64 +83,5 @@ public class ChessBoard
             }
             System.out.print("\n");
         }
-    }
-    
-    public boolean turn(String player, char c1,int r1 , char c2, int r2) 
-    {
-        //convert chars
-        int col1 = c1 - 65;
-        int col2 = c2 - 65;
-        System.out.print(r1);
-        System.out.print(col1);
-        System.out.println("");
-        System.out.print(r2);
-        System.out.println(col2);
-        
-        //check if there is a piece at that spot
-        if(board[r1][col1] != null)
-        {
-            if(board[r1][col1].colour.equals(player))
-            {
-                System.out.println("player piece there");
-                //check if that piece can move to specified spot
-                if ((board[r2][col2] != null && !board[r2][col2].colour.equals(player)) || board[r2][col2] == null) 
-                {
-                    System.out.println("nothing in way");
-                    if (board[r1][col1].CheckMove(r1, col1, r2, col2, board)) 
-                    {
-                        System.out.println("legal move");
-                        board[r2][col2] = board[r1][col1];
-                        board[r1][col1] = null;
-                        return true;
-                    }
-                    else System.out.println("illegal move");
-                }
-                else System.out.println("piece in way");
-            }
-            else System.out.println("piece there");
-        }
-        else System.out.println("null piece");
-        
-        return false;
-    }
-    
-    public boolean gameOver()
-    {
-        //check if game is over
-        int kings = 0;
-        //count kings
-        for(int r = 0; r < board.length; r++)
-        {
-            for( int c = 0; c < board.length; c++)
-            {
-                if(board[r][c] != null) 
-                {
-                    if(board[r][c].symbol == 'x' || board[r][c].symbol == 'X') kings++;
-                }
-            }
-        }
-        
-        if (kings < 2) return true;
-        return false;
     }
 }

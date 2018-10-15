@@ -3,15 +3,14 @@ package ca.humber.chess;
 
 public class Rook extends ChessPiece
 {
-    public Rook(String colour_) 
+    public Rook(String colour_, int row, int column) 
     {
         colour = colour_;
         if(colour.equals("white")) symbol = 'R';
         else symbol = 'r';
     }
     
-    @Override
-    public Boolean CheckMove(int r1, int c1, int r2, int c2, ChessPiece[][] board)
+    public Boolean CanMoveTo(int r2, int c2, ChessPiece[][] board)
     {
         //moves up down left right if no piece is in the way
         

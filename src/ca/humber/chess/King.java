@@ -3,7 +3,7 @@ package ca.humber.chess;
 
 public class King extends ChessPiece
 {
-    public King(String colour_) 
+    public King(String colour_, int row, int column) 
     {
         colour = colour_;
         if(colour.equals("white")) symbol = 'X';
@@ -11,8 +11,7 @@ public class King extends ChessPiece
         
     }
     
-    @Override
-    public Boolean CheckMove(int r1, int c1, int r2, int c2, ChessPiece[][] board)
+    public Boolean CanMoveTo(int r2, int c2, ChessPiece[][] board)
     {
         //one space in any diection
         int difr = r2 - r1;

@@ -3,15 +3,14 @@ package ca.humber.chess;
 
 public class Bishop extends ChessPiece
 {
-    public Bishop(String colour_) 
+    public Bishop(String colour_, int row, int column) 
     {
         colour = colour_;
         if(colour.equals("white")) symbol = 'B';
         else symbol = 'b';
     }
     
-    @Override
-    public Boolean CheckMove(int r1, int c1, int r2, int c2, ChessPiece[][] board)
+    public Boolean CanMoveTo(int r2, int c2, ChessPiece[][] board)
     {
         //diagonals if no piece in the way
         int distR = r2 - r1;

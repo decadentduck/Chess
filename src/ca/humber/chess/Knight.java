@@ -3,15 +3,14 @@ package ca.humber.chess;
 
 public class Knight extends ChessPiece
 {
-    public Knight(String colour_) 
+    public Knight(String colour_, int row, int column) 
     {
         colour = colour_;
         if(colour.equals("white")) symbol = 'K';
         else symbol = 'k';
     }
     
-    @Override
-    public Boolean CheckMove(int r1, int c1, int r2, int c2, ChessPiece[][] board)
+    public Boolean CanMoveTo(int r2, int c2, ChessPiece[][] board)
     {
         if (r2 != r1 + 2 || r2 != r1 - 2 || r2 != r1 + 1 || r2 != r1 - 1)
         {
