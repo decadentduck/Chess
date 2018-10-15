@@ -43,14 +43,14 @@ public class GameManager
                     if(player.equals("white")) player = "black";
                     else player = "white";
                 }
-            if(chessBoard.gameOver()) running = false;
+            if(GameOver()) running = false;
             }
             catch(InputMismatchException ex)
             {
                 System.out.println(ex.getMessage());
             }
             //check win
-            if(chessBoard.gameOver()) running = false;
+            if(GameOver()) running = false;
         }
     }
     
