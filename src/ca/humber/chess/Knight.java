@@ -22,8 +22,7 @@ public class Knight extends ChessPiece
                     return false;
                 }
             }
-        }
-        
+        }     
         return true;
     }
 }
