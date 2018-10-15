@@ -1,3 +1,4 @@
+/*Created by Kaitlyn Ewing & Jeff Bonhoff*/
 package ca.humber.chess;
 
 public abstract class ChessPiece 

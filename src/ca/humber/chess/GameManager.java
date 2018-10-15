@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*Created by Kaitlyn Ewing & Jeff Bonhoff*/
 package ca.humber.chess;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- *
- * @author kaitl
- */
 public class GameManager 
 {
     ChessBoard chessBoard;
@@ -29,6 +21,8 @@ public class GameManager
         String player = "white";
         //create scanner
         Scanner sc = new Scanner(System.in);
+        //check if there is a board
+        if(chessBoard == null) chessBoard = new ChessBoard();
         
         //game loop
         while(running)
