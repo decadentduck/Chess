@@ -24,28 +24,32 @@ public class GameManager
         //check if there is a board
         if(chessBoard == null) chessBoard = new ChessBoard();
         
+        //draw board
+        chessBoard.Draw();
+        
         //game loop
         while(running)
         {
-            //draw board
-            chessBoard.Draw();
-            //player turn
             try
             {
-                if(Turn(player, sc.next("[A-Z]").charAt(0), sc.nextInt() -1, sc.next("[A-Z]").charAt(0), sc.nextInt()-1))
+                //player turn
+                if(Turn(player, sc.next("[A-H]").charAt(0), sc.nextInt() -1, sc.next("[A-H]").charAt(0), sc.nextInt()-1))
                 {
                     if(player.equals("white")) player = "black";
                     else player = "white";
                 }
-            if(GameOver()) running = false;
+                //check win
+                if(GameOver()) running = false;
+            
+                //draw board
+                chessBoard.Draw();
             }
             catch(InputMismatchException ex)
             {
-                System.out.println(ex.getMessage());
+                System.out.println("incorrect input");
             }
-            //check win
-            if(GameOver()) running = false;
         }
+        System.out.println("Game Over");
     }
     
     public boolean Turn(String player, char c1,int r1 , char c2, int r2) 
@@ -81,7 +85,7 @@ public class GameManager
                 }
                 else System.out.println("piece in way");
             }
-            else System.out.println("piece there");
+            else System.out.println(" Enemy piece there");
         }
         else System.out.println("null piece");
         
