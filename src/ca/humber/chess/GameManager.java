@@ -57,11 +57,6 @@ public class GameManager
         //convert chars
         int col1 = c1 - 65;
         int col2 = c2 - 65;
-        System.out.print(r1);
-        System.out.print(col1);
-        System.out.println("");
-        System.out.print(r2);
-        System.out.println(col2);
         
         //check if there is a piece at that spot
         if(chessBoard.board[r1][col1] != null)
