@@ -5,6 +5,8 @@ public class King extends ChessPiece
 {
     public King(String colour_, int row, int column) 
     {
+        r1 = row;
+        c1 = column;
         colour = colour_;
         if(colour.equals("white")) symbol = 'X';
         else symbol = 'x';

@@ -9,12 +9,9 @@ public abstract class ChessPiece
     
     public abstract Boolean CanMoveTo(int r2, int c2, ChessPiece[][] board);
             
-    public void MoveTo(int row, int column, ChessPiece[][] board)
+    public void MoveTo(int row, int column)
     {
-        if(CanMoveTo(row, column, board))
-        {
-            r1 = row;
-            c1 = column;
-        }
+       r1 = row;
+       c1 = column;
     }
 }
