@@ -24,6 +24,10 @@ public class GameManager
         //check if there is a board
         if(chessBoard == null) chessBoard = new ChessBoard();
         
+        System.out.println("Instructions:");
+        System.out.println("Enter the movement with the starting point first and the destination second");
+        System.out.println("for example: 'A 2 A 3'");
+        
         //draw board
         chessBoard.Draw();
         
@@ -46,7 +50,11 @@ public class GameManager
             }
             catch(InputMismatchException ex)
             {
-                System.out.println("incorrect input");
+                System.out.println("incorrect input, try again");
+                System.out.println("Instructions:");
+                System.out.println("Enter the movement with the starting point first and the destination second");
+                System.out.println("for example: 'A 2 A 3'");
+                sc.next();
             }
         }
         System.out.println("Game Over");
@@ -63,27 +71,20 @@ public class GameManager
         {
             if(chessBoard.board[r1][col1].colour.equals(player))
             {
-                System.out.println("player piece there");
                 //check if that piece can move to specified spot
                 if ((chessBoard.board[r2][col2] != null && !chessBoard.board[r2][col2].colour.equals(player)) || chessBoard.board[r2][col2] == null) 
                 {
-                    System.out.println("nothing in way");
                     if (chessBoard.board[r1][col1].CanMoveTo(r2, col2, chessBoard.board)) 
                     {
-                        System.out.println("legal move");
-                        chessBoard.board[r1][col1].MoveTo(r2, col2, chessBoard.board);
+                        chessBoard.board[r1][col1].MoveTo(r2, col2);
                         chessBoard.board[r2][col2] = chessBoard.board[r1][col1];
                         chessBoard.board[r1][col1] = null;
                         return true;
                     }
                     else System.out.println("illegal move");
                 }
-                else System.out.println("piece in way");
             }
-            else System.out.println(" Enemy piece there");
         }
-        else System.out.println("null piece");
-        
         return false;
     }
     

@@ -5,6 +5,8 @@ public class Rook extends ChessPiece
 {
     public Rook(String colour_, int row, int column) 
     {
+        r1 = row;
+        c1 = column;
         colour = colour_;
         if(colour.equals("white")) symbol = 'R';
         else symbol = 'r';

@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Laptop/Documents/GitHub/Chess/src/ca/humber/chess/Chess.java</file>
+=======
+            <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/GameManager.java</file>
+            <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Rook.java</file>
+            <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/King.java</file>
+            <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Queen.java</file>
+            <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Chess.java</file>
+            <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Pawn.java</file>
+            <file>file:/C:/Users/kaitl/Documents/NetBeansProjects/Chess/src/ca/humber/chess/Knight.java</file>
+>>>>>>> b17b8723379f96d8af5d0c8ff2cd154e3ac23316
         </group>
     </open-files>
 </project-private>

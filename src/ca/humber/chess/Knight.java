@@ -5,6 +5,8 @@ public class Knight extends ChessPiece
 {
     public Knight(String colour_, int row, int column) 
     {
+        r1 = row;
+        c1 = column;
         colour = colour_;
         if(colour.equals("white")) symbol = 'K';
         else symbol = 'k';
