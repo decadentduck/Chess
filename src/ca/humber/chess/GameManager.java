@@ -32,14 +32,28 @@ public class GameManager
     
     public void Run()
     {
-        //TODO ask to start new game or load up an existing save file
-        
-        
-        
+
         //create scanner
         Scanner sc = new Scanner(System.in);
-        //create the game
-        CreateGame();
+        
+        //TODO ask to start new game or load up an existing save file
+        try
+        {
+            System.out.println("1 - Start New Game");
+            System.out.println("2 - Load Saved Game");
+            if(sc.nextInt() == 1) CreateGame();
+            else if(sc.nextInt() == 2)
+            {
+                //TODO Show existing files
+                //TODO create game from specified file
+            }
+        }
+        catch(InputMismatchException ex)
+        {
+            System.out.println("Enter '1' or '2'");       
+            sc.next();
+        }
+        
          //tell it to start game
         boolean running = true;
         
@@ -72,6 +86,7 @@ public class GameManager
             }
             catch(InputMismatchException ex)
             {
+                System.out.println("incorrect input, try again");
                 Instructions();
                 sc.next();
             }
@@ -153,7 +168,6 @@ public class GameManager
     
     private void Instructions()
     {
-        System.out.println("incorrect input, try again");
         System.out.println("Instructions:");
         System.out.println("Enter the movement with the starting point first and the destination second");
         System.out.println("for example: 'A 2 A 3'");
