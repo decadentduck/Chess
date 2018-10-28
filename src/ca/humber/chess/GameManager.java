@@ -76,14 +76,11 @@ public class GameManager
         while(running)
         {
             //TODO add option to save the game
-            if (sc.nextLine() == "save")
-            {
-                System.out.println("Name the save file");
+            //System.out.println("Name the save file");
                     
-                String name = sc.nextLine();
-                    
-                SaveGame(name);
-            }
+            //String fileName = sc.next();
+                  
+            SaveGame("bob");
             
             
             try
@@ -107,6 +104,7 @@ public class GameManager
                 Instructions();
                 sc.next();
             }
+            
         }
         System.out.println("Game Over");
     }

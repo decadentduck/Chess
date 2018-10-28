@@ -1,0 +1,1 @@
+white R K B X Q B K R P P P P P P P P 
