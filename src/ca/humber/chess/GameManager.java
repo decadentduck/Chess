@@ -76,6 +76,15 @@ public class GameManager
         while(running)
         {
             //TODO add option to save the game
+            if (sc.nextLine() == "save")
+            {
+                System.out.println("Name the save file");
+                    
+                String name = sc.nextLine();
+                    
+                SaveGame(name);
+            }
+            
             
             try
             {
@@ -85,6 +94,7 @@ public class GameManager
                     if(player.equals("white")) player = "black";
                     else player = "white";
                 }
+                
                 //check win
                 if(GameOver()) running = false;
             
@@ -178,5 +188,6 @@ public class GameManager
         System.out.println("Instructions:");
         System.out.println("Enter the movement with the starting point first and the destination second");
         System.out.println("for example: 'A 2 A 3'");
+        System.out.println("enter 'save' to save the game");
     }
 }
