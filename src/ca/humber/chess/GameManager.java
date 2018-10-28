@@ -80,7 +80,7 @@ public class GameManager
                     
             //String fileName = sc.next();
                   
-            SaveGame("bob");
+            SaveGame("Save.txt");
             
             
             try
@@ -150,7 +150,8 @@ public class GameManager
             {
                 for(ChessPiece i : row)
                 {
-                    f.write(i.symbol);
+                    if(i!= null) f.write(i.symbol);
+                    else f.write("a");
                     f.write(" ");
                 }
             }
