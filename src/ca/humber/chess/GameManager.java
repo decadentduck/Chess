@@ -11,12 +11,14 @@ public class GameManager
 {
     ChessBoard chessBoard;
     String player;
+    
     public void Start()
     {
-        
+        MainMenu();
+        Run();
     }
     
-    public void CreateGame()
+    private void CreateGame()
     {
         //initialize
         chessBoard = new ChessBoard();
@@ -25,18 +27,17 @@ public class GameManager
         player = "white";
     }
     
-    public void CreateGame(String filename)
+    private void CreateGame(String filename)
     {
         
     }
     
-    public void Run()
+    private void MainMenu()
     {
-
         //create scanner
         Scanner sc = new Scanner(System.in);
         
-        //TODO ask to start new game or load up an existing save file
+        //ask to start new game or load up an existing save file
         try
         {
             System.out.println("1 - Start New Game");
@@ -53,12 +54,18 @@ public class GameManager
             System.out.println("Enter '1' or '2'");       
             sc.next();
         }
+    }
+    
+    private void Run()
+    {
+        //create scanner
+        Scanner sc = new Scanner(System.in);
         
-         //tell it to start game
+        //tell it to start game
         boolean running = true;
         
         //check if there is a board
-        if(chessBoard == null) chessBoard = new ChessBoard();
+        if(chessBoard == null) MainMenu();
         
         Instructions();
         
@@ -94,7 +101,7 @@ public class GameManager
         System.out.println("Game Over");
     }
     
-    public boolean Turn(String player, char c1,int r1 , char c2, int r2) 
+    private boolean Turn(String player, char c1,int r1 , char c2, int r2) 
     {
         //convert chars
         int col1 = c1 - 65;
@@ -146,7 +153,7 @@ public class GameManager
         }
     }
    
-    public boolean GameOver()
+    private boolean GameOver()
     {
         //check if game is over
         int kings = 0;

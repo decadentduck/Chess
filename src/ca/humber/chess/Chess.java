@@ -11,6 +11,5 @@ public class Chess
         GameManager game = new GameManager();
         
         game.Start();
-        game.Run();
     }
 }
