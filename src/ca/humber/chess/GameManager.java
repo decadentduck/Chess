@@ -14,6 +14,7 @@ public class GameManager
 {
     ChessBoard chessBoard;
     String player;
+    ChessPiece[][] board;
     
     public void Start()
     {
@@ -167,6 +168,8 @@ public class GameManager
         {
             String line;
             
+            board = new ChessPiece[8][8];
+            
             while ((line = in.readLine()) != null) 
             {
                 StringTokenizer st = new StringTokenizer(line, " .'\"-,:;()[]{}`/*+");
@@ -176,40 +179,40 @@ public class GameManager
                     for (ChessPiece i : row) 
                     {
                         if (line == "p")
-                        {chessBoard.board[row][i] = new Pawn(b, row, i);}
+                        {chessBoard.board[row][i] = new Pawn("b", row, i);}
                         
                         else if (line == "r")
-                        {chessBoard.board[row][i] = new Rook(b, row, i);}
+                        {chessBoard.board[row][i] = new Rook("b", row, i);}
                         
                         else if (line == "k")
-                        {chessBoard.board[row][i] = new Knight(b, row, i);}
+                        {chessBoard.board[row][i] = new Knight("b", row, i);}
                         
                         else if (line == "b")
-                        {chessBoard.board[row][i] = new Bishop(b, row, i);}
+                        {chessBoard.board[row][i] = new Bishop("b", row, i);}
                         
                         else if (line == "q")
-                        {chessBoard.board[row][i] = new Queen(b, row, i);}
+                        {chessBoard.board[row][i] = new Queen("b", row, i);}
                         
                         else if (line == "x")
-                        {chessBoard.board[row][i] = new King(b, row, i);}
+                        {chessBoard.board[row][i] = new King("b", row, i);}
                         
                         else if (line == "P")
-                        {chessBoard.board[row][i] = new Pawn(a, row, i);}
+                        {chessBoard.board[row][i] = new Pawn("a", row, i);}
                         
                         else if (line == "R")
-                        {chessBoard.board[row][i] = new Rook(a, row, i);}
+                        {chessBoard.board[row][i] = new Rook("a", row, i);}
                         
                         else if (line == "K")
-                        {chessBoard.board[row][i] = new Knight(a, row, i);}
+                        {chessBoard.board[row][i] = new Knight("a", row, i);}
                         
                         else if (line == "B")
-                        {chessBoard.board[row][i] = new Bishop(a, row, i);}
+                        {chessBoard.board[row][i] = new Bishop("a", row, i);}
                         
                         else if (line == "Q")
-                        {chessBoard.board[row][i] = new Queen(a, row, i);}
+                        {chessBoard.board[row][i] = new Queen("a", row, i);}
                         
                         else if (line == "X")
-                        {chessBoard.board[row][i] = new King(a, row, i);}
+                        {chessBoard.board[row][i] = new King("a", row, i);}
                         
                         else 
                         {chessBoard.board[row][i] = null;}
