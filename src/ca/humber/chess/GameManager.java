@@ -1,32 +1,52 @@
 /*Created by Kaitlyn Ewing & Jeff Bonhoff*/
 package ca.humber.chess;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameManager 
 {
     ChessBoard chessBoard;
+    String player;
     public void Start()
+    {
+        
+    }
+    
+    public void CreateGame()
     {
         //initialize
         chessBoard = new ChessBoard();
+
+        //set player one
+        player = "white";
+    }
+    
+    public void CreateGame(String filename)
+    {
+        
     }
     
     public void Run()
     {
-        //tell it to start game
-        boolean running = true;
-        //set player one
-        String player = "white";
+        //TODO ask to start new game or load up an existing save file
+        
+        
+        
         //create scanner
         Scanner sc = new Scanner(System.in);
+        //create the game
+        CreateGame();
+         //tell it to start game
+        boolean running = true;
+        
         //check if there is a board
         if(chessBoard == null) chessBoard = new ChessBoard();
         
-        System.out.println("Instructions:");
-        System.out.println("Enter the movement with the starting point first and the destination second");
-        System.out.println("for example: 'A 2 A 3'");
+        Instructions();
         
         //draw board
         chessBoard.Draw();
@@ -34,6 +54,8 @@ public class GameManager
         //game loop
         while(running)
         {
+            //TODO add option to save the game
+            
             try
             {
                 //player turn
@@ -50,10 +72,7 @@ public class GameManager
             }
             catch(InputMismatchException ex)
             {
-                System.out.println("incorrect input, try again");
-                System.out.println("Instructions:");
-                System.out.println("Enter the movement with the starting point first and the destination second");
-                System.out.println("for example: 'A 2 A 3'");
+                Instructions();
                 sc.next();
             }
         }
@@ -88,6 +107,30 @@ public class GameManager
         return false;
     }
     
+    private void SaveGame(String fileName)
+    {
+        //saves playerturn and the symbol at each spot on the board
+        File file = new File(fileName);  
+        
+        try(FileWriter f = new FileWriter(file);)
+        {
+            f.write(player);
+            f.write(" ");
+            for(ChessPiece row[]: chessBoard.board)
+            {
+                for(ChessPiece i : row)
+                {
+                    f.write(i.symbol);
+                    f.write(" ");
+                }
+            }
+        }
+        catch(IOException ex)
+        {
+            
+        }
+    }
+   
     public boolean GameOver()
     {
         //check if game is over
@@ -106,5 +149,13 @@ public class GameManager
         
         if (kings < 2) return true;
         return false;
+    }
+    
+    private void Instructions()
+    {
+        System.out.println("incorrect input, try again");
+        System.out.println("Instructions:");
+        System.out.println("Enter the movement with the starting point first and the destination second");
+        System.out.println("for example: 'A 2 A 3'");
     }
 }
