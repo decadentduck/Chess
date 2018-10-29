@@ -11,6 +11,63 @@ public class ChessBoard
         Setup();
     }
     
+    public ChessBoard(char[] sym)
+    {
+        board = new ChessPiece[8][8];
+        int i = 0;
+        for(int r = 0; r < board.length; r++)
+        {
+            for( int c = 0; c < board.length; c++)
+            {
+                switch(sym[i])
+                {
+                    case 'a':
+                        board[r][c] = null;
+                        break;
+                    case 'p':
+                        board[r][c] = new Pawn("black", r, c);
+                        break;
+                    case 'P':
+                        board[r][c] = new Pawn("white", r, c);
+                        break;
+                    case 'r':
+                        board[r][c] = new Rook("black", r, c);
+                        break;
+                    case 'R':
+                        board[r][c] = new Rook("white", r, c);
+                        break;
+                    case 'b':
+                        board[r][c] = new Bishop("black", r, c);
+                        break;
+                    case 'B':
+                        board[r][c] = new Bishop("white", r, c);
+                        break;
+                    case 'k':
+                        board[r][c] = new Knight("black", r, c);
+                        break;
+                    case 'K':
+                        board[r][c] = new Knight("white", r, c);
+                        break;
+                    case 'x':
+                        board[r][c] = new King("black", r, c);
+                        break;
+                    case 'X':
+                        board[r][c] = new King("white", r, c);
+                        break;
+                    case 'q':
+                        board[r][c] = new Queen("black", r, c);
+                        break;
+                    case 'Q':
+                        board[r][c] = new Queen("white", r, c);
+                        break;
+                    default:
+                        break;
+                }
+                i++;
+            }
+        }
+    }
+    
     private void Setup()
     {
         //set everything to null

@@ -31,6 +31,59 @@ public class GameManager
         player = "white";
     }
     
+    private void CreateGame(String fileName)
+    {
+        //set player one
+        try (BufferedReader in = new BufferedReader(new FileReader(fileName));) 
+        {
+            String line;
+            char[] symbols = new char[64];
+            
+            
+            //read the lines
+            while ((line = in.readLine()) != null) 
+            {
+                //Read the words
+                StringTokenizer st = new StringTokenizer(line, " .'\"-,:;()[]{}`/*+");
+
+                player = st.nextToken();
+                
+                int i = 0;
+                while (st.hasMoreTokens()) 
+                {
+                    String word = st.nextToken();
+                    symbols[i] = word.charAt(0);
+                    i++;
+                }
+            }
+            //initialize
+            chessBoard = new ChessBoard(symbols);
+        }
+        catch(IOException s){System.out.println("Invalid file");}
+        
+        Run();
+    }
+    
+    private boolean GameOver()
+    {
+        //check if game is over
+        int kings = 0;
+        //count kings
+        for(int r = 0; r < chessBoard.board.length; r++)
+        {
+            for( int c = 0; c < chessBoard.board.length; c++)
+            {
+                if(chessBoard.board[r][c] != null) 
+                {
+                    if(chessBoard.board[r][c].symbol == 'x' || chessBoard.board[r][c].symbol == 'X') kings++;
+                }
+            }
+        }
+        
+        if (kings < 2) return true;
+        return false;
+    }
+    
     private void MainMenu()
     {
         //create scanner
@@ -46,7 +99,7 @@ public class GameManager
             {
                 //TODO Show existing files
                 //create game from specified file
-                LoadGame("Save.txt");
+                CreateGame("Save.txt");
             }
         }
         catch(InputMismatchException ex)
@@ -160,89 +213,6 @@ public class GameManager
         {
             
         }
-    }
-   
-    private void LoadGame(String filename)
-    {
-        try (BufferedReader in = new BufferedReader(new FileReader(filename));) 
-        {
-            String line;
-            
-            board = new ChessPiece[8][8];
-            
-            while ((line = in.readLine()) != null) 
-            {
-                StringTokenizer st = new StringTokenizer(line, " .'\"-,:;()[]{}`/*+");
-            
-                for (ChessPiece row[] : chessBoard.board) 
-                {
-                    for (ChessPiece i : row) 
-                    {
-                        if (line == "p")
-                        {chessBoard.board[row][i] = new Pawn("b", row, i);}
-                        
-                        else if (line == "r")
-                        {chessBoard.board[row][i] = new Rook("b", row, i);}
-                        
-                        else if (line == "k")
-                        {chessBoard.board[row][i] = new Knight("b", row, i);}
-                        
-                        else if (line == "b")
-                        {chessBoard.board[row][i] = new Bishop("b", row, i);}
-                        
-                        else if (line == "q")
-                        {chessBoard.board[row][i] = new Queen("b", row, i);}
-                        
-                        else if (line == "x")
-                        {chessBoard.board[row][i] = new King("b", row, i);}
-                        
-                        else if (line == "P")
-                        {chessBoard.board[row][i] = new Pawn("a", row, i);}
-                        
-                        else if (line == "R")
-                        {chessBoard.board[row][i] = new Rook("a", row, i);}
-                        
-                        else if (line == "K")
-                        {chessBoard.board[row][i] = new Knight("a", row, i);}
-                        
-                        else if (line == "B")
-                        {chessBoard.board[row][i] = new Bishop("a", row, i);}
-                        
-                        else if (line == "Q")
-                        {chessBoard.board[row][i] = new Queen("a", row, i);}
-                        
-                        else if (line == "X")
-                        {chessBoard.board[row][i] = new King("a", row, i);}
-                        
-                        else 
-                        {chessBoard.board[row][i] = null;}
-                    }
-                }
-            }
-        }
-        catch(IOException s){System.out.println("Invalid file");}
-        
-        Run();
-    }
-    
-    private boolean GameOver()
-    {
-        //check if game is over
-        int kings = 0;
-        //count kings
-        for(int r = 0; r < chessBoard.board.length; r++)
-        {
-            for( int c = 0; c < chessBoard.board.length; c++)
-            {
-                if(chessBoard.board[r][c] != null) 
-                {
-                    if(chessBoard.board[r][c].symbol == 'x' || chessBoard.board[r][c].symbol == 'X') kings++;
-                }
-            }
-        }
-        
-        if (kings < 2) return true;
-        return false;
     }
     
     private void Instructions()
