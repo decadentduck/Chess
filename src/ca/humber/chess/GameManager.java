@@ -88,24 +88,31 @@ public class GameManager
     {
         //create scanner
         Scanner sc = new Scanner(System.in);
-        
-        //ask to start new game or load up an existing save file
-        try
+        while(chessBoard == null)
         {
-            System.out.println("1 - Start New Game");
-            System.out.println("2 - Load Saved Game");
-            if(sc.nextInt() == 1) {CreateGame();}
-            else if(sc.nextInt() == 2)
+            //ask to start new game or load up an existing save file
+            try
             {
-                //TODO Show existing files
-                //create game from specified file
-                CreateGame("Save.txt");
+                System.out.println("1 - Start New Game");
+                System.out.println("2 - Load Saved Game");
+                int i = sc.nextInt();
+                if (i == 1) CreateGame();
+                else if (i == 2) 
+                {
+                    //Show existing files
+                    //create game from specified file
+                    System.out.println("1 - Save Game 1");
+                    System.out.println("2 - Save Game 2");
+                    i = sc.nextInt();
+                    if (i == 1) CreateGame("Save.txt");
+                    else if (i == 2) CreateGame("Save0.txt");
+                }
             }
-        }
-        catch(InputMismatchException ex)
-        {
-            System.out.println("Enter '1' or '2'");       
-            sc.next();
+            catch(InputMismatchException ex)
+            {
+                System.out.println("Enter '1' or '2'");       
+                sc.next();
+            }
         }
     }
     
@@ -128,26 +135,27 @@ public class GameManager
         //game loop
         while(running)
         {
-            //TODO add option to save the game
-//            System.out.println("Name the save file");
-                    
-//            String fileName = sc.next();
-                  
-            SaveGame("Save.txt");
-            
-            
             try
             {
+                String firstInput = sc.next();
+                if (!firstInput.equals("save") && !firstInput.equals("A") && !firstInput.equals("B") && !firstInput.equals("C")
+                        && !firstInput.equals("D") && !firstInput.equals("E") && !firstInput.equals("F") && !firstInput.equals("G") 
+                        && !firstInput.equals("H")) { throw new InputMismatchException(); }
+                else if(firstInput.equals("save"))
+                {
+                    SaveGame("save0.txt");
+                    break;
+                }
                 //player turn
-                if(Turn(player, sc.next("[A-H]").charAt(0), sc.nextInt() -1, sc.next("[A-H]").charAt(0), sc.nextInt()-1))
+                else if(Turn(player, firstInput.charAt(0), sc.nextInt() -1, sc.next("[A-H]").charAt(0), sc.nextInt()-1))
                 {
                     if(player.equals("white")) player = "black";
                     else player = "white";
                 }
-                
+                else System.out.println("illegal move");
+                    
                 //check win
                 if(GameOver()) running = false;
-            
                 //draw board
                 chessBoard.Draw();
             }
@@ -156,13 +164,16 @@ public class GameManager
                 System.out.println("incorrect input, try again");
                 Instructions();
                 sc.next();
+                //draw board
+                chessBoard.Draw();
             }
             
         }
-        System.out.println("Game Over");
+        System.out.println("Game Closed");
+        running = false;
     }
     
-    private boolean Turn(String player, char c1,int r1 , char c2, int r2) 
+    private boolean Turn(String player, char c1, int r1, char c2, int r2) 
     {
         //convert chars
         int col1 = c1 - 65;
@@ -220,6 +231,6 @@ public class GameManager
         System.out.println("Instructions:");
         System.out.println("Enter the movement with the starting point first and the destination second");
         System.out.println("for example: 'A 2 A 3'");
-        System.out.println("enter 'save' to save the game");
+        System.out.println("or enter 'save' to save the game");
     }
 }
