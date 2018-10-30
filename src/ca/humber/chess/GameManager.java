@@ -104,8 +104,8 @@ public class GameManager
                     System.out.println("1 - Save Game 1");
                     System.out.println("2 - Save Game 2");
                     i = sc.nextInt();
-                    if (i == 1) CreateGame("Save.txt");
-                    else if (i == 2) CreateGame("Save0.txt");
+                    if (i == 1) CreateGame("Save1.txt");
+                    else if (i == 2) CreateGame("Save2.txt");
                 }
             }
             catch(InputMismatchException ex)
@@ -116,6 +116,30 @@ public class GameManager
         }
     }
     
+    private void SaveMenu()
+    {
+        //create scanner
+        Scanner sc = new Scanner(System.in);
+        while(chessBoard != null)
+        {
+            //ask which save file to overwrite
+            try
+            {
+                System.out.println("1 - Save as Game 1");
+                System.out.println("2 - Save as Game 2");
+                int i = sc.nextInt();
+                if (i == 1) SaveGame("Save1.txt");
+                else if (i == 2) SaveGame("Save2.txt");
+                else throw new InputMismatchException();
+            }
+            catch(InputMismatchException ex)
+            {
+                System.out.println("Enter '1' or '2'");       
+                sc.next();
+            }
+        }
+    }
+   
     private void Run()
     {
         //create scanner
@@ -143,7 +167,8 @@ public class GameManager
                         && !firstInput.equals("H")) { throw new InputMismatchException(); }
                 else if(firstInput.equals("save"))
                 {
-                    SaveGame("save0.txt");
+                    SaveMenu();
+                    running = false;
                     break;
                 }
                 //player turn
@@ -224,6 +249,7 @@ public class GameManager
         {
             
         }
+        chessBoard = null;
     }
     
     private void Instructions()
