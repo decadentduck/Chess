@@ -3,6 +3,8 @@ package ca.humber.chess;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -151,6 +153,21 @@ public class ChessBoard extends JPanel
         this.setLayout(new GridLayout(8, 8));
         buttons = new JButton[64];
         
+        Icon BBishop = new ImageIcon("Images/BBishop.jpg");
+        Icon BKing = new ImageIcon("Images/BKing.jpg");
+        Icon BKnight = new ImageIcon("Images/BKnight.jpg");
+        Icon BPawn = new ImageIcon("Images/BPawn.jpg");
+        Icon BQueen = new ImageIcon("Images/BQueen.jpg");
+        Icon BRook = new ImageIcon("Images/BRook.jpg");
+        
+        Icon WBishop = new ImageIcon("Images/WBishop.jpg");
+        Icon WKing = new ImageIcon("Images/WKing.jpg");
+        Icon WKnight = new ImageIcon("Images/WKnight.jpg");
+        Icon WPawn = new ImageIcon("Images/WPawn.jpg");
+        Icon WQueen = new ImageIcon("Images/WQueen.jpg");
+        Icon WRook = new ImageIcon("Images/WRook.jpg");
+
+        
         int i = 0;
         while ( i < 64){
             
@@ -158,8 +175,67 @@ public class ChessBoard extends JPanel
             {
                 for( int c = 0; c < board.length; c++)
                 {   
-                    if (board[r][c] != null) buttons[i] = new JButton(Character.toString(board[r][c].symbol));
-                    else buttons[i] = new JButton("");
+                    if (board[r][c] != null) {            
+                        String val = Character.toString(board[r][c].symbol);
+                        switch(val)
+                        {
+                            case "b":
+                                buttons[i] = new JButton(BBishop);
+                                break;
+                                
+                            case "r":
+                                buttons[i] = new JButton(BRook);
+                                break;
+                            
+                            case "k":
+                                buttons[i] = new JButton(BKnight);
+                                break;
+                                
+                            case "q":
+                                buttons[i] = new JButton(BQueen);
+                                break;
+                                
+                            case "x":
+                                buttons[i] = new JButton(BKing);
+                                break;
+                                
+                            case "p":
+                                buttons[i] = new JButton(BPawn);
+                                break;
+                                
+                            
+                            case "B":
+                                buttons[i] = new JButton(WBishop);
+                                break;
+                                
+                            case "R":
+                                buttons[i] = new JButton(WRook);
+                                break;
+                            
+                            case "K":
+                                buttons[i] = new JButton(WKnight);
+                                break;
+                                
+                            case "Q":
+                                buttons[i] = new JButton(WQueen);
+                                break;
+                                
+                            case "X":
+                                buttons[i] = new JButton(WKing);
+                                break;
+                                
+                            case "P":
+                                buttons[i] = new JButton(WPawn);
+                                break;
+                                
+                            default:
+                                buttons[i] = new JButton("");
+                                break;
+                        }
+                    } else {
+                        buttons[i] = new JButton("");
+                    }
+
                     buttons[i].setFont(new Font("Arial", Font.BOLD, 50));
                     this.add(buttons[i]);
                     i++;
