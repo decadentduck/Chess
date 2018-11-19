@@ -1,9 +1,16 @@
 /*Created by Kaitlyn Ewing & Jeff Bonhoff*/
 package ca.humber.chess;
 
-public class ChessBoard 
+import java.awt.Font;
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class ChessBoard extends JPanel
 {
     ChessPiece[][] board;
+    
+    private JButton[] buttons;
     
     public ChessBoard()
     {
@@ -122,23 +129,43 @@ public class ChessBoard
     
     public void Draw()
     {
-        for(int r = 8; r >= 0; r--)
-        {
-            for( int c = 0; c <= 8; c++)
+//        for(int r = 8; r >= 0; r--)
+//        {
+//            for( int c = 0; c <= 8; c++)
+//            {
+//                System.out.print(" ");
+//                if(r < 8 && c < 8)
+//                {
+//                    if (board[r][c] != null) System.out.print(board[r][c].symbol);
+//                    else System.out.print(" ");
+//                }
+//                else 
+//                {
+//                    if (c < 8) System.out.print((char)(65 + c));
+//                    else if (r < 8) System.out.print(r + 1);
+//                }
+//            }
+//            System.out.print("\n");
+//        }
+        
+        this.setLayout(new GridLayout(8, 8));
+        buttons = new JButton[64];
+        
+        int i = 0;
+        while ( i < 64){
+            
+            for(int r = 7; r >= 0; r--)
             {
-                System.out.print(" ");
-                if(r < 8 && c < 8)
-                {
-                    if (board[r][c] != null) System.out.print(board[r][c].symbol);
-                    else System.out.print(" ");
-                }
-                else 
-                {
-                    if (c < 8) System.out.print((char)(65 + c));
-                    else if (r < 8) System.out.print(r + 1);
+                for( int c = 0; c < board.length; c++)
+                {   
+                    if (board[r][c] != null) buttons[i] = new JButton(Character.toString(board[r][c].symbol));
+                    else buttons[i] = new JButton("");
+                    buttons[i].setFont(new Font("Arial", Font.BOLD, 50));
+                    this.add(buttons[i]);
+                    i++;
                 }
             }
-            System.out.print("\n");
         }
     }
+    
 }

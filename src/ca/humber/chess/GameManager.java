@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.StringTokenizer;
+import javax.swing.JFrame;
 
 public class GameManager 
 {
@@ -29,6 +30,13 @@ public class GameManager
 
         //set player one
         player = "white";
+        
+        //create window
+        JFrame frame = new JFrame("Chess");
+        frame.setContentPane(chessBoard);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBounds(200, 200, 700, 700);
     }
     
     private void CreateGame(String fileName)
@@ -58,6 +66,13 @@ public class GameManager
             }
             //initialize
             chessBoard = new ChessBoard(symbols);
+            
+            //create window
+            JFrame frame = new JFrame("Chess");
+            frame.setContentPane(chessBoard);
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setBounds(200, 200, 800, 800);
         }
         catch(IOException s){System.out.println("Invalid file");}
         
