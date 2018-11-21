@@ -3,9 +3,12 @@ package ca.humber.chess;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ChessBoard extends JPanel
@@ -169,13 +172,14 @@ public class ChessBoard extends JPanel
 
         
         int i = 0;
-        while ( i < 64){
-            
+        while ( i < 64)
+        {
             for(int r = 7; r >= 0; r--)
             {
                 for( int c = 0; c < board.length; c++)
                 {   
-                    if (board[r][c] != null) {            
+                    if (board[r][c] != null) 
+                    {            
                         String val = Character.toString(board[r][c].symbol);
                         switch(val)
                         {
@@ -232,16 +236,31 @@ public class ChessBoard extends JPanel
                                 buttons[i] = new JButton("");
                                 break;
                         }
-                    } else {
+                    } 
+                    else 
+                    {
                         buttons[i] = new JButton("");
                     }
 
                     buttons[i].setFont(new Font("Arial", Font.BOLD, 50));
                     this.add(buttons[i]);
+                    
+                    buttons[i].addActionListener(new ActionListener() 
+                    {
+                
+                        @Override
+                        public void actionPerformed(ActionEvent ae) 
+                        {
+                            //find first button coordinates
+                            
+                            //find second button coordinates
+                            
+                            //perform turn
+                        }
+                    });
                     i++;
                 }
             }
         }
     }
-    
 }
