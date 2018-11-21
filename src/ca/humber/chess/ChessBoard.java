@@ -286,6 +286,7 @@ public class ChessBoard extends JPanel
                     this.add(buttons[i]);
                     validate();
                     setVisible(true);
+                    
                     repaint();
                     
                     buttons[i].addActionListener(new ActionListener() 
