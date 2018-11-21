@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 public class GameManager 
 {
     ChessBoard chessBoard;
-    String player;
     ChessPiece[][] board;
     
     public void Start()
@@ -29,7 +28,7 @@ public class GameManager
         chessBoard = new ChessBoard();
 
         //set player one
-        player = "white";
+        chessBoard.player = "white";
         
         //create window
         JFrame frame = new JFrame("Chess");
@@ -54,7 +53,7 @@ public class GameManager
                 //Read the words
                 StringTokenizer st = new StringTokenizer(line, " .'\"-,:;()[]{}`/*+");
 
-                player = st.nextToken();
+                chessBoard.player = st.nextToken();
                 
                 int i = 0;
                 while (st.hasMoreTokens()) 
@@ -187,10 +186,10 @@ public class GameManager
                     break;
                 }
                 //player turn
-                else if(Turn(player, firstInput.charAt(0), sc.nextInt() -1, sc.next("[A-H]").charAt(0), sc.nextInt()-1))
+                else if(chessBoard.Turn(chessBoard.player, firstInput.charAt(0), sc.nextInt() -1, sc.next("[A-H]").charAt(0), sc.nextInt()-1))
                 {
-                    if(player.equals("white")) player = "black";
-                    else player = "white";
+                    if(chessBoard.player.equals("white")) chessBoard.player = "black";
+                    else chessBoard.player = "white";
                 }
                 else System.out.println("illegal move");
                     
@@ -213,33 +212,7 @@ public class GameManager
         running = false;
     }
     
-    private boolean Turn(String player, char c1, int r1, char c2, int r2) 
-    {
-        //convert chars
-        int col1 = c1 - 65;
-        int col2 = c2 - 65;
-        
-        //check if there is a piece at that spot
-        if(chessBoard.board[r1][col1] != null)
-        {
-            if(chessBoard.board[r1][col1].colour.equals(player))
-            {
-                //check if that piece can move to specified spot
-                if ((chessBoard.board[r2][col2] != null && !chessBoard.board[r2][col2].colour.equals(player)) || chessBoard.board[r2][col2] == null) 
-                {
-                    if (chessBoard.board[r1][col1].CanMoveTo(r2, col2, chessBoard.board)) 
-                    {
-                        chessBoard.board[r1][col1].MoveTo(r2, col2);
-                        chessBoard.board[r2][col2] = chessBoard.board[r1][col1];
-                        chessBoard.board[r1][col1] = null;
-                        return true;
-                    }
-                    else System.out.println("illegal move");
-                }
-            }
-        }
-        return false;
-    }
+
     
     private void SaveGame(String fileName)
     {
@@ -248,7 +221,7 @@ public class GameManager
         
         try(FileWriter f = new FileWriter(file);)
         {
-            f.write(player);
+            f.write(chessBoard.player);
             f.write(" ");
             for(ChessPiece row[]: chessBoard.board)
             {

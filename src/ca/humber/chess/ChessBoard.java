@@ -14,7 +14,8 @@ import javax.swing.JPanel;
 public class ChessBoard extends JPanel
 {
     ChessPiece[][] board;
-    
+    String player;
+    int row1 = -1, row2 = -1, column1 = -1, column2 = -1;
     private JButton[] buttons;
     
     public ChessBoard()
@@ -132,27 +133,65 @@ public class ChessBoard extends JPanel
         
     }
     
+        public boolean Turn(String player, char c1, int r1, char c2, int r2) 
+    {
+        //convert chars
+        int col1 = c1 - 65;
+        int col2 = c2 - 65;
+        
+        //check if there is a piece at that spot
+        if(board[r1][col1] != null)
+        {
+            if(board[r1][col1].colour.equals(player))
+            {
+                //check if that piece can move to specified spot
+                if ((board[r2][col2] != null && !board[r2][col2].colour.equals(player)) || board[r2][col2] == null) 
+                {
+                    if (board[r1][col1].CanMoveTo(r2, col2, board)) 
+                    {
+                        board[r1][col1].MoveTo(r2, col2);
+                        board[r2][col2] = board[r1][col1];
+                        board[r1][col1] = null;
+                        return true;
+                    }
+                    else System.out.println("illegal move");
+                }
+            }
+        }
+        return false;
+    }
+        
+         public boolean Turn(String player, int c1, int r1, int c2, int r2) 
+    {
+        //convert chars
+        int col1 = c1;
+        int col2 = c2;
+        
+        //check if there is a piece at that spot
+        if(board[r1][col1] != null)
+        {
+            if(board[r1][col1].colour.equals(player))
+            {
+                //check if that piece can move to specified spot
+                if ((board[r2][col2] != null && !board[r2][col2].colour.equals(player)) || board[r2][col2] == null) 
+                {
+                    if (board[r1][col1].CanMoveTo(r2, col2, board)) 
+                    {
+                        board[r1][col1].MoveTo(r2, col2);
+                        board[r2][col2] = board[r1][col1];
+                        board[r1][col1] = null;
+                        return true;
+                    }
+                    else System.out.println("illegal move");
+                }
+            }
+        }
+        return false;
+    }
+        
     public void Draw()
     {
-//        for(int r = 8; r >= 0; r--)
-//        {
-//            for( int c = 0; c <= 8; c++)
-//            {
-//                System.out.print(" ");
-//                if(r < 8 && c < 8)
-//                {
-//                    if (board[r][c] != null) System.out.print(board[r][c].symbol);
-//                    else System.out.print(" ");
-//                }
-//                else 
-//                {
-//                    if (c < 8) System.out.print((char)(65 + c));
-//                    else if (r < 8) System.out.print(r + 1);
-//                }
-//            }
-//            System.out.print("\n");
-//        }
-        
+        this.removeAll();
         this.setLayout(new GridLayout(8, 8));
         buttons = new JButton[64];
         
@@ -243,6 +282,7 @@ public class ChessBoard extends JPanel
                     }
 
                     buttons[i].setFont(new Font("Arial", Font.BOLD, 50));
+                    buttons[i].setName(Integer.toString(i));
                     this.add(buttons[i]);
                     
                     buttons[i].addActionListener(new ActionListener() 
@@ -251,11 +291,45 @@ public class ChessBoard extends JPanel
                         @Override
                         public void actionPerformed(ActionEvent ae) 
                         {
+                         
+                            JButton currentButton = (JButton)ae.getSource();
+                            int currentR = 0, currentC = 0;
+                          
+                            int x = Integer.parseInt(currentButton.getName());
+                            for (int i = x; i > 0; i-=8) 
+                            {
+                                if( (i - 8) > 0) 
+                                {
+                                    currentC++;
+                                    currentR = i - 8;
+                                }
+                            }
                             //find first button coordinates
-                            
+                            if(row1 < 0) 
+                            {
+                                row1 = currentR;
+                                column1 = currentC;
+                            }
                             //find second button coordinates
-                            
-                            //perform turn
+                            else
+                            {
+                                row2 = currentR;
+                                column2 = currentC;
+                                
+                                //perform turn
+                                if (Turn(player, column1, row1, column2, row2)) 
+                                {
+                                    if (player.equals("white")) 
+                                    {
+                                        player = "black";
+                                    } 
+                                    else
+                                    {
+                                        player = "white";
+                                    }
+                                    Draw();
+                                }
+                            }
                         }
                     });
                     i++;
