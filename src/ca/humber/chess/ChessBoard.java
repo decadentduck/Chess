@@ -284,6 +284,9 @@ public class ChessBoard extends JPanel
                     buttons[i].setFont(new Font("Arial", Font.BOLD, 50));
                     buttons[i].setName(Integer.toString(i));
                     this.add(buttons[i]);
+                    validate();
+                    setVisible(true);
+                    repaint();
                     
                     buttons[i].addActionListener(new ActionListener() 
                     {

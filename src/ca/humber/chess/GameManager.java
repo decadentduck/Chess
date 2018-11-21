@@ -173,6 +173,7 @@ public class GameManager
         //game loop
         while(running)
         {
+       
             try
             {
                 String firstInput = sc.next();
