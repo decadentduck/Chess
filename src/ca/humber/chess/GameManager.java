@@ -28,7 +28,7 @@ public class GameManager
         chessBoard = new ChessBoard();
 
         //set player one
-        chessBoard.player = "white";
+        chessBoard.player = "black";
         
         //create window
         JFrame frame = new JFrame("Chess");
@@ -78,25 +78,6 @@ public class GameManager
         Run();
     }
     
-    private boolean GameOver()
-    {
-        //check if game is over
-        int kings = 0;
-        //count kings
-        for(int r = 0; r < chessBoard.board.length; r++)
-        {
-            for( int c = 0; c < chessBoard.board.length; c++)
-            {
-                if(chessBoard.board[r][c] != null) 
-                {
-                    if(chessBoard.board[r][c].symbol == 'x' || chessBoard.board[r][c].symbol == 'X') kings++;
-                }
-            }
-        }
-        
-        if (kings < 2) return true;
-        return false;
-    }
     
     private void MainMenu()
     {
@@ -195,7 +176,7 @@ public class GameManager
                 else System.out.println("illegal move");
                     
                 //check win
-                if(GameOver()) running = false;
+                if(chessBoard.GameOver()) running = false;
                 //draw board
                 chessBoard.Draw();
             }

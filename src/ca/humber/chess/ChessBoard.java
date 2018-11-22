@@ -133,7 +133,7 @@ public class ChessBoard extends JPanel
         
     }
     
-        public boolean Turn(String player, char c1, int r1, char c2, int r2) 
+    public boolean Turn(String player, char c1, int r1, char c2, int r2) 
     {
         //convert chars
         int col1 = c1 - 65;
@@ -160,12 +160,11 @@ public class ChessBoard extends JPanel
         }
         return false;
     }
-        
-       public boolean Turn(int c1, int r1, int c2, int r2) 
-       {
-           
+      
+    public boolean Turn(int c1, int r1, int c2, int r2)
+    {
         //check if there is a piece at that spot
-        if (board[r1][c1] != null) 
+        if (board[r1][c1] != null)
         {
             if (board[r1][c1].colour.equals(player)) 
             {
@@ -189,7 +188,30 @@ public class ChessBoard extends JPanel
 
         return false;
     }
-        
+      
+    public boolean GameOver() 
+    {
+        //check if game is over
+        int kings = 0;
+        //count kings
+        for (int r = 0; r < board.length; r++) 
+        {
+            for (int c = 0; c < board.length; c++)
+            {
+                if (board[r][c] != null) 
+                {
+                    if (board[r][c].symbol == 'x' || board[r][c].symbol == 'X') 
+                    {
+                        kings++;
+                    }
+                }
+            }
+        }
+
+        if (kings < 2) { return true; }
+        return false;
+    }
+       
     public void Draw()
     {
         this.removeAll();
@@ -264,10 +286,7 @@ public class ChessBoard extends JPanel
                                 break;
                         }
                     } 
-                    else 
-                    {
-                        buttons[i] = new JButton("");
-                    }
+                    else { buttons[i] = new JButton(""); }
 
                     buttons[i].setFont(new Font("Arial", Font.BOLD, 50));
                     buttons[i].setName(Integer.toString(i));
@@ -279,11 +298,9 @@ public class ChessBoard extends JPanel
                     
                     buttons[i].addActionListener(new ActionListener() 
                     {
-                
                         @Override
                         public void actionPerformed(ActionEvent ae) 
                         {
-                         
                             JButton currentButton = (JButton)ae.getSource();
                             int currentR = -1, currentC = -1;
                           
@@ -295,8 +312,18 @@ public class ChessBoard extends JPanel
                             {
                                currentR = i;
                                currentC = x - (i*8);
-                               if (currentC == 8) {currentC = 0;}
+                               if (currentC == 8) 
+                               {
+                                   currentC = 0;
+                                   currentR++;
+                               }
                             }
+                            if(currentC < 0) 
+                            {
+                                currentC = 0;
+                                currentR = 0;
+                            }
+                            
                             //find first button coordinates
                             if(row1 < 0) 
                             {
@@ -322,23 +349,18 @@ public class ChessBoard extends JPanel
                                 //perform turn
                                 if (Turn(column1, row1, column2, row2)) 
                                 {
-                                    if (player.equals("white")) 
-                                    {
-                                        player = "black";
-                                    } 
-                                    else
-                                    {
-                                        player = "white";
-                                    }
+                                    if (player.equals("white")) { player = "black"; } 
+                                    else { player = "white"; }
                                     Draw();
                                 }
-                                else{System.out.print("move not completed");}
+                                else { System.out.print("move not completed"); }
                                 row1 = -1;
                                 row2 = -1;
                                 column1 = -1;
                                 column2 = -1;
+                                
+                                if(GameOver()) JOptionPane.showConfirmDialog(currentButton, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
                             }
-                            
                         }
                     });
                     i++;
