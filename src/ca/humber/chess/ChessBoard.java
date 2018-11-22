@@ -163,22 +163,20 @@ public class ChessBoard extends JPanel
         
        public boolean Turn(int c1, int r1, int c2, int r2) 
        {
-        int col1 = c1;
-        int col2 = c2;
-
+           
         //check if there is a piece at that spot
-        if (board[r1][col1] != null) 
+        if (board[r1][c1] != null) 
         {
-            if (board[r1][col1].colour.equals(player)) 
+            if (board[r1][c1].colour.equals(player)) 
             {
                 //check if that piece can move to specified spot
-                if ((board[r2][col2] != null && !board[r2][col2].colour.equals(player)) || board[r2][col2] == null) 
+                if ((board[r2][c2] != null && !board[r2][c2].colour.equals(player)) || board[r2][c2] == null) 
                 {
-                    if (board[r1][col1].CanMoveTo(r2, col2, board)) 
+                    if (board[r1][c1].CanMoveTo(r2, c2, board)) 
                     {
-                        board[r1][col1].MoveTo(r2, col2);
-                        board[r2][col2] = board[r1][col1];
-                        board[r1][col1] = null;
+                        board[r1][c1].MoveTo(r2, c2);
+                        board[r2][c2] = board[r1][c1];
+                        board[r1][c1] = null;
                         return true;
                     } 
                     else { System.out.println("illegal move"); }
@@ -216,7 +214,7 @@ public class ChessBoard extends JPanel
         int i = 0;
         while ( i < 64)
         {
-            for(int r = 7; r >= 0; r--)
+            for(int r = 0; r <= 7; r++)
             {
                 for( int c = 0; c < board.length; c++)
                 {   
@@ -225,40 +223,40 @@ public class ChessBoard extends JPanel
                         String val = Character.toString(board[r][c].symbol);
                         switch(val)
                         {
-                            case "b":
+                            case "B":
                                 buttons[i] = new JButton(BBishop);
                                 break;
-                            case "r":
+                            case "R":
                                 buttons[i] = new JButton(BRook);
                                 break;
-                            case "k":
+                            case "K":
                                 buttons[i] = new JButton(BKnight);
                                 break;                                
-                            case "q":
+                            case "Q":
                                 buttons[i] = new JButton(BQueen);
                                 break;                                
-                            case "x":
+                            case "X":
                                 buttons[i] = new JButton(BKing);
                                 break;                                
-                            case "p":
+                            case "P":
                                 buttons[i] = new JButton(BPawn);
                                 break;   
-                            case "B":
+                            case "b":
                                 buttons[i] = new JButton(WBishop);
                                 break;                               
-                            case "R":
+                            case "r":
                                 buttons[i] = new JButton(WRook);
                                 break;                            
-                            case "K":
+                            case "k":
                                 buttons[i] = new JButton(WKnight);
                                 break;                                
-                            case "Q":
+                            case "q":
                                 buttons[i] = new JButton(WQueen);
                                 break;                                
-                            case "X":
+                            case "x":
                                 buttons[i] = new JButton(WKing);
                                 break;                                
-                            case "P":
+                            case "p":
                                 buttons[i] = new JButton(WPawn);
                                 break;                                
                             default:
@@ -292,10 +290,12 @@ public class ChessBoard extends JPanel
                             int x = Integer.parseInt(currentButton.getName());
                             System.out.print("\n");
                             System.out.print(x);
+                            System.out.print("\n");
                             for (int i = 0; (i * 8) < x; i++) 
                             {
                                currentR = i;
                                currentC = x - (i*8);
+                               if (currentC == 8) {currentC = 0;}
                             }
                             //find first button coordinates
                             if(row1 < 0) 
@@ -303,9 +303,9 @@ public class ChessBoard extends JPanel
                                 row1 = currentR;
                                 column1 = currentC;
                                 
-                                System.out.print("col1");
+                                System.out.print("col1 ");
                                 System.out.print(column1);
-                                System.out.print("row1");
+                                System.out.print("row1 ");
                                 System.out.print(row1);
                             }
                             //find second button coordinates
@@ -314,9 +314,9 @@ public class ChessBoard extends JPanel
                                 row2 = currentR;
                                 column2 = currentC;
                                 
-                                System.out.print("col2");
+                                System.out.print("col2 ");
                                 System.out.print(column2);
-                                System.out.print("row2");
+                                System.out.print("row2 ");
                                 System.out.print(row2);
                                 
                                 //perform turn
