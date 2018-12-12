@@ -21,7 +21,7 @@ public class GameManager
     {
         try {
             MysqlDataSource dataSource = new MysqlDataSource();
-            dataSource.setURL("jdbc:mysql://localhost:3306/space_battle");
+            dataSource.setURL("jdbc:mysql://localhost:3306/chess");
             dataSource.setUser("root");
             dataSource.setPassword("root");
             DBConnectivity dbCon = new DBConnectivity(dataSource);

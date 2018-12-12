@@ -25,10 +25,9 @@ public class DBConnectivity implements AutoCloseable {
     public void queryDB() throws SQLException {
         try (Statement stmt = con.createStatement()) {
             try (ResultSet rs = stmt.executeQuery("SELECT * FROM players")){
-               System.out.println("player_id\tplayer_name\tpassword\temail");
+               System.out.println("player_id\tplayer_name");
                 while (rs.next()) {
-                   System.out.println(rs.getInt("player_id") + "\t\t" + rs.getString("player_name") +
-                           "\t\t" + rs.getString("password") + "\t\t" + rs.getString("email"));
+                   System.out.println(rs.getInt("player_id") + "\t\t" + rs.getString("player_name"));
                }
             }
         }
@@ -71,25 +70,10 @@ public class DBConnectivity implements AutoCloseable {
         }
     }
     
-    public void insertCharacterInstance(int characterID, int gameID) throws SQLException{
-        try (Statement stmt = con.createStatement()) {
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM characters "
-                    + "WHERE character_id=" + characterID)) {
-                if (rs.next()) {
-                    stmt.executeUpdate("INSERT INTO character_instances "
-                        + "(character_id, game_instance_id) VALUES (" + characterID + "," + gameID + ")");
-                } else {
-                    throw new RuntimeException("Invalid character");
-                }
-            }
-        }
-    }
-    
     public void startGame(int playerID, int characterID, int levelID) throws SQLException {
         try {
             con.setAutoCommit(false);
             int gameID = insertGameInstance(playerID, levelID);
-            insertCharacterInstance(characterID, gameID);
             con.commit();
         } catch (Exception e) {
             con.rollback();
