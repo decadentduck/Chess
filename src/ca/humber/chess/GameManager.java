@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.StringTokenizer;
 import javax.swing.JFrame;
+import com.mysql.cj.jdbc.MysqlDataSource;
 
 public class GameManager 
 {
@@ -18,6 +19,18 @@ public class GameManager
     
     public void Start()
     {
+        try {
+            MysqlDataSource dataSource = new MysqlDataSource();
+            dataSource.setURL("jdbc:mysql://localhost:3306/space_battle");
+            dataSource.setUser("root");
+            dataSource.setPassword("root");
+            DBConnectivity dbCon = new DBConnectivity(dataSource);
+          //  dbCon.insertInfo();
+            dbCon.startGame(2, 1, 4);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
         MainMenu();
         Run();
     }
@@ -77,7 +90,6 @@ public class GameManager
         
         Run();
     }
-    
     
     private void MainMenu()
     {
@@ -193,8 +205,6 @@ public class GameManager
         System.out.println("Game Closed");
         running = false;
     }
-    
-
     
     private void SaveGame(String fileName)
     {
